@@ -2,9 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button color="white"></ion-menu-button>
-        </ion-buttons>
+          <ion-buttons slot="start">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+          </ion-buttons>
         <ion-title>Nome</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -36,7 +36,7 @@
 
         <ion-card class="card">
           <img
-            src="https://ionicframework.com/docs/demos/api/card/madison.jpg"
+            src="/assets/ps4.png"
           />
 
           <div style="display:grid;">
@@ -53,7 +53,7 @@
         </ion-card>
         <ion-card class="card">
           <img
-            src="https://ionicframework.com/docs/demos/api/card/madison.jpg"
+            src="/assets/volante.png"
           />
 
           <div style="display:grid;">
@@ -70,7 +70,7 @@
         </ion-card>
         <ion-card class="card">
           <img
-            src="https://ionicframework.com/docs/demos/api/card/madison.jpg"
+            src="/assets/memoria.png"
           />
 
           <div style="display:grid;">
@@ -88,7 +88,7 @@
         </ion-card>
         <ion-card class="card">
           <img
-            src="https://ionicframework.com/docs/demos/api/card/madison.jpg"
+            src="/assets/monitor.png"
           />
 
           <div style="display:grid;">
@@ -531,8 +531,8 @@
         <div class="box">
           <ion-card class="card" style="border: 0; box-shadow: unset;">
             <img
-              src="https://ionicframework.com/docs/demos/api/card/madison.jpg"
-            />
+            src="/assets/ps4.png"
+          />
 
             <div style="display:grid;">
               <ion-card-header style="display:grid;">
@@ -666,6 +666,11 @@ export default defineComponent({
   font-size: 14px;
   line-height: 17px;
   color: #152530;
+  margin-top: 10px;
+}
+
+.ion-col > .ion-item.ion-color.ion-color-transparent.item.ios.item-fill-none.item-label {
+  color:transparent!important;
 }
 
 :host(.ion-color) {

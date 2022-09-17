@@ -96,7 +96,7 @@ import {
   trashOutline,
   trashSharp,
   warningOutline,
-  warningSharp,
+  warningSharp
 } from "ionicons/icons";
 
 export default defineComponent({
@@ -206,6 +206,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.selected{
+  color: #000000;
+  background-color: #f4f5f8;
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
