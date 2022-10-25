@@ -5,14 +5,14 @@
           <ion-buttons slot="start">
             <ion-menu-button auto-hide="false"></ion-menu-button>
           </ion-buttons>
-        <ion-title>Nome</ion-title>
+        <ion-title>InflaTech</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Nome</ion-title>
+          <ion-title size="large">InflaTech</ion-title>
         </ion-toolbar>
       </ion-header>
 
@@ -118,7 +118,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -128,7 +128,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >IPCA do ultimo mês</ion-label
+                    >IPCA do <br>ultimo mês</ion-label
                   >
                   <br />
                   <ion-label
@@ -150,7 +150,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -160,7 +160,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >IPCA do ultimo mês</ion-label
+                    >IPCA <br>12 meses</ion-label
                   >
                   <br />
                   <ion-label
@@ -179,7 +179,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -189,7 +189,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >IPCA do ultimo mês</ion-label
+                    >INPC do <br>ultimo mês</ion-label
                   >
                   <br />
                   <ion-label
@@ -237,7 +237,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -247,7 +247,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >Bitcoin hoje</ion-label
+                    >Bitcoin <br>hoje</ion-label
                   >
                   <br />
                   <ion-label
@@ -255,7 +255,7 @@
                       font-family: 'Lato';
                       font-style: normal;
                       font-weight: 700;
-                      font-size: 20px;
+                      font-size: 10px;
                       line-height: 24px;
                       color: #000000 !important;
                     "
@@ -269,7 +269,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -279,7 +279,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >Bitcoin no último mês</ion-label
+                    >Bitcoin no <br>último mês</ion-label
                   >
                   <br />
                   <ion-label
@@ -287,7 +287,7 @@
                       font-family: 'Lato';
                       font-style: normal;
                       font-weight: 700;
-                      font-size: 20px;
+                      font-size: 10px;
                       line-height: 24px;
                       color: #000000 !important;
                     "
@@ -298,7 +298,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -308,7 +308,7 @@
                       line-height: 12px;
                       color: #000000;
                     "
-                    >Bitcoin no ultimo ano</ion-label
+                    >Bitcoin no <br>ultimo ano</ion-label
                   >
                   <br />
                   <ion-label
@@ -316,7 +316,7 @@
                       font-family: 'Lato';
                       font-style: normal;
                       font-weight: 700;
-                      font-size: 20px;
+                      font-size: 10px;
                       line-height: 24px;
                       color: #000000 !important;
                     "
@@ -361,7 +361,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -393,7 +393,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -422,7 +422,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding: 10px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
