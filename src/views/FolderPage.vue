@@ -118,7 +118,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -150,7 +150,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -179,7 +179,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -237,7 +237,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -269,7 +269,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -298,7 +298,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -361,7 +361,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -393,7 +393,7 @@
                 color="transparent"
                 style="border-right: 1px solid black"
               >
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
@@ -422,7 +422,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-item color="transparent">
-                <div style="padding-top: 10px; padding-right: 5px; text-align: center; width: 100%">
+                <div style="padding-top: 10px; text-align: center; width: 100%">
                   <ion-label
                     style="
                       font-family: 'Lato';
