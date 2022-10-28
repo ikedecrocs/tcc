@@ -1,0 +1,452 @@
+[
+    {
+        "extenalId": 2,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 103,
+                    "value": "8,73",
+                    "date": "2022-10-24",
+                    "lastPercentage": "10"
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 102,
+                    "value": "8,73",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 101,
+                    "value": "8,73",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 57,
+                    "value": "8,73",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 100,
+                    "value": "8,73",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 3,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 107,
+                    "value": "5,17",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 106,
+                    "value": "5,17",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 105,
+                    "value": "5,17",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 90,
+                    "value": "5,25",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 104,
+                    "value": "5,17",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 2,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 103,
+                    "value": "8,73",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 102,
+                    "value": "8,73",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 101,
+                    "value": "8,73",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 57,
+                    "value": "8,73",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 100,
+                    "value": "8,73",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 3,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 107,
+                    "value": "5,17",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 106,
+                    "value": "5,17",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 105,
+                    "value": "5,17",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 90,
+                    "value": "5,25",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 104,
+                    "value": "5,17",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 2,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 103,
+                    "value": "8,73",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 102,
+                    "value": "8,73",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 101,
+                    "value": "8,73",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 57,
+                    "value": "8,73",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 100,
+                    "value": "8,73",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 3,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 107,
+                    "value": "5,17",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 106,
+                    "value": "5,17",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 105,
+                    "value": "5,17",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 90,
+                    "value": "5,25",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 104,
+                    "value": "5,17",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 2,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 103,
+                    "value": "8,73",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 102,
+                    "value": "8,73",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 101,
+                    "value": "8,73",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 57,
+                    "value": "8,73",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 100,
+                    "value": "8,73",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 3,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 107,
+                    "value": "5,17",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 106,
+                    "value": "5,17",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 105,
+                    "value": "5,17",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 90,
+                    "value": "5,25",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 104,
+                    "value": "5,17",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 2,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 103,
+                    "value": "8,73",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 102,
+                    "value": "8,73",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 101,
+                    "value": "8,73",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 57,
+                    "value": "8,73",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 100,
+                    "value": "8,73",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    },
+    {
+        "extenalId": 3,
+        "externalPeriod": [
+            {
+                "dailyDTO": {
+                    "id": 107,
+                    "value": "5,17",
+                    "date": "2022-10-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 106,
+                    "value": "5,17",
+                    "date": "2022-10-17",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 105,
+                    "value": "5,17",
+                    "date": "2022-10-09",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 90,
+                    "value": "5,25",
+                    "date": "2022-09-24",
+                    "lastPercentage": null
+                }
+            },
+            {
+                "dailyDTO": {
+                    "id": 104,
+                    "value": "5,17",
+                    "date": "2021-10-24",
+                    "lastPercentage": null
+                }
+            }
+        ]
+    }
+]
