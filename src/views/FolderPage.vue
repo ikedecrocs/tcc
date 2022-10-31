@@ -616,7 +616,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ApiService from "../service/api-service"
+import axios from 'axios';
 import {
   IonButtons,
   IonContent,
@@ -653,14 +653,6 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
-},
-data: function(){
-    return {
-      apiService: new ApiService(HTTP)
-    }
-},
-setup() {
-    console.log(this.apiService.chamarDailyFactor());
 },
 });
 </script>

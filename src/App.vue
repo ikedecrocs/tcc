@@ -8,22 +8,23 @@
             </ion-list-header>
             <ion-note>
               <ion-chip color="success">
-              <ion-label color="000000" :outline="true">BITCOIN</ion-label>
+              <ion-label color="000000" :outline="true">BTC R${{btc}}</ion-label>
             </ion-chip>
             <ion-chip color="danger">
-              <ion-label color="000000">+6%</ion-label>
+              <ion-label color="000000">IPCA {{ipca}}</ion-label>
             </ion-chip>
             <ion-chip color="success">
-              <ion-label color="000000">R$ 5,30</ion-label>
+              <ion-label color="000000">US$ R${{dolar}}</ion-label>
             </ion-chip>
               <ion-list>
                 <ion-item>
-                  <ion-select
-                    interface="popover"
-                    placeholder="Selectione o intervalo"
+                  <ion-select interface="popover" placeholder="Selectione o intervalo"
                   >
-                    <ion-select-option value="3">3 Meses</ion-select-option>
-                    <ion-select-option value="6">6 Meses</ion-select-option>
+                    <ion-select-option value="0">Hoje</ion-select-option>
+                    <ion-select-option value="1">7 dias</ion-select-option>
+                    <ion-select-option value="2">15 dias</ion-select-option>
+                    <ion-select-option value="3">30 dias</ion-select-option>
+                    <ion-select-option value="4">1 ano</ion-select-option>
                   </ion-select>
                 </ion-item>
               </ion-list>
@@ -78,6 +79,7 @@ import {
 } from "@ionic/vue";
 import { defineComponent, ref } from "vue";
 import { useRoute } from "vue-router";
+import axios from 'axios';
 import {
   home,
   add,
@@ -116,6 +118,33 @@ export default defineComponent({
     IonSplitPane,
     IonSelect,
     IonSelectOption,
+  },
+  data() {
+    return {
+      externalFactor: [],
+      btc: 0,
+      ipca: 0,
+      dolar: 0,
+      intervalo: 0,
+    }
+  },
+  methods: {
+    chamarExternalFactor: async function() {
+        console.log("rodou");
+        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/DailyFactor')
+          .then((response) => {
+            this.externalFactor = response.data;
+            this.btc = this.externalFactor[0]['externalPeriod'][this.intervalo]['dailyDTO']['value'];
+            this.ipca = this.externalFactor[1]['externalPeriod'][this.intervalo]['dailyDTO']['value'];
+            this.dolar = this.externalFactor[2]['externalPeriod'][this.intervalo]['dailyDTO']['value'];
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    }
+  },
+  async created() {
+    await this.chamarExternalFactor()
   },
   setup() {
     const selectedIndex = ref(0);
