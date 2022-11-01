@@ -18,7 +18,7 @@
             </ion-chip>
               <ion-list>
                 <ion-item>
-                  <ion-select interface="popover" placeholder="Selectione o intervalo"
+                  <ion-select interface="popover" placeholder="Selectione o intervalo" @ionChange="trocarIntervalo($event)" 
                   >
                     <ion-select-option value="0">Hoje</ion-select-option>
                     <ion-select-option value="1">7 dias</ion-select-option>
@@ -140,6 +140,10 @@ export default defineComponent({
           .catch((error) => {
             console.log(error)
           })
+    },
+    trocarIntervalo($event: any) {
+      this.intervalo = $event.target.value
+      this.chamarExternalFactor();
     }
   },
   async created() {
