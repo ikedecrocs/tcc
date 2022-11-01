@@ -34,7 +34,7 @@
           </ion-chip>
         </div>
 
-        <ion-card class="card">
+        <ion-card class="card"  v-for="precoDia in precosDia" :key="precoDia.price.id">
           <img
             src="/assets/ps4.png"
           />
@@ -42,68 +42,16 @@
           <div style="display:grid;">
             <ion-card-header style="display:grid;">
               <ion-card-subtitle class="subtitle"
-                >Console PlayStation 4 Slim 500GB - Sony</ion-card-subtitle
+                >{{precoDia.price.product.name}}</ion-card-subtitle
               >
-              <ion-card-title class="title">R$ 2.249,89</ion-card-title>
+              <ion-card-title class="title">R$ {{precoDia.price.value}}</ion-card-title>
             </ion-card-header>
             <ion-card-content class="price">
-              Melhor preço dos ultimos 3 meses
+              Melhor preço dos ultimos {{precoDia.bestOfferRangeDays}} dias
             </ion-card-content>
           </div>
         </ion-card>
-        <ion-card class="card">
-          <img
-            src="/assets/volante.png"
-          />
 
-          <div style="display:grid;">
-            <ion-card-header style="display:grid;">
-              <ion-card-subtitle class="subtitle"
-                >Volante Logitech G29 - PS3/PS4/PS5/PC</ion-card-subtitle
-              >
-              <ion-card-title class="title">R$ 1.777,68</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="price">
-              Melhor preço dos ultimos 5 meses
-            </ion-card-content>
-          </div>
-        </ion-card>
-        <ion-card class="card">
-          <img
-            src="/assets/memoria.png"
-          />
-
-          <div style="display:grid;">
-            <ion-card-header style="display:grid;">
-              <ion-card-subtitle class="subtitle"
-                >Memória XPG Spectrix D41 RGB, 8GB, 3000MHz,
-                DDR4</ion-card-subtitle
-              >
-              <ion-card-title class="title">R$ 370,47</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="price">
-              Melhor preço dos ultimos 3 meses
-            </ion-card-content>
-          </div>
-        </ion-card>
-        <ion-card class="card">
-          <img
-            src="/assets/monitor.png"
-          />
-
-          <div style="display:grid;">
-            <ion-card-header style="display:grid;">
-              <ion-card-subtitle class="subtitle"
-                >Monitor Acer Gamer 24' IPS FHD 165Hz 1ms 2HDMI
-                DP</ion-card-subtitle
-              >
-              <ion-card-title class="title">R$ 1.799,00</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="price">
-              Melhor preço dos ultimos 9 meses
-            </ion-card-content>
-          </div>
-        </ion-card>
       </div>
 
       <!-- PÁGINA INFLAÇÃO -->
@@ -617,6 +565,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import axios from 'axios';
+import Vue from "vue";
 import {
   IonButtons,
   IonContent,
@@ -653,7 +602,27 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
-},
+  },
+  data() {
+    return {
+      precosDia: [],
+    }
+  },
+  methods: {
+    chamarDailyDeal: async function() {
+        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
+          .then((response) => {
+            this.precosDia = response.data;
+            console.log(this.precosDia);
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    }
+  },
+  async created() {
+    await this.chamarDailyDeal()
+  },
 });
 </script>
 

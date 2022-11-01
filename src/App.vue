@@ -130,7 +130,6 @@ export default defineComponent({
   },
   methods: {
     chamarExternalFactor: async function() {
-        console.log("rodou");
         await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/DailyFactor')
           .then((response) => {
             this.externalFactor = response.data;

@@ -13,5 +13,20 @@
             }
         },
         "bestOfferRangeDays": 1
+    },
+    {
+        "price": {
+            "id": 34,
+            "installmentValue": "250",
+            "installmentNumber": "12",
+            "value": "2800",
+            "dateCheck": "2022-10-03",
+            "priceMarker": "0.94669",
+            "product": {
+                "id": 1,
+                "name": "Playstation 5"
+            }
+        },
+        "bestOfferRangeDays": 1
     }
 ]
