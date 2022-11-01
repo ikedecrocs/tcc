@@ -88,7 +88,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >1,16%</ion-label
+                    >{{this.ipcaFirst}}%</ion-label
                   >
                 </div>
               </ion-item>
@@ -120,7 +120,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >1,16%</ion-label
+                    >{{this.ipcaSecond}}%</ion-label
                   >
                 </div>
               </ion-item>
@@ -149,7 +149,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >1,16%</ion-label
+                    >{{this.ipcaThird}}%</ion-label
                   >
                 </div>
               </ion-item>
@@ -207,7 +207,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 344.750,57</ion-label
+                    >R$ {{this.btcToday}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -239,7 +239,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 254.750,57</ion-label
+                    >R$ {{this.btcMonthly}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -268,7 +268,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 200.750,57</ion-label
+                    >R$ {{this.btcYearly}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -331,7 +331,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 5,65</ion-label
+                    >R$ {{this.dolarToday}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -363,7 +363,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 5,50</ion-label
+                    >R$ {{this.dolarMonthly}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -392,7 +392,7 @@
                       line-height: 24px;
                       color: #000000 !important;
                     "
-                    >R$ 4,62</ion-label
+                    >R$ {{this.dolarYearly}}</ion-label
                   >
                 </div>
               </ion-item>
@@ -606,6 +606,25 @@ export default defineComponent({
   data() {
     return {
       precosDia: [],
+
+      // IPCA
+
+      ipcaFirst: 0,
+      ipcaSecond: 0,
+      ipcaThird: 0,
+
+      // DOLAR
+
+      dolarToday: 0,
+      dolarMonthly: 0,
+      dolarYearly: 0,
+
+      // BTC
+
+      btcToday: 0,
+      btcMonthly: 0,
+      btcYearly: 0,
+
     }
   },
   methods: {
@@ -613,15 +632,50 @@ export default defineComponent({
         await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
           .then((response) => {
             this.precosDia = response.data;
-            console.log(this.precosDia);
           })
           .catch((error) => {
             console.log(error)
           })
-    }
+    },
+    chamarIpca: async function() {
+        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
+          .then((response) => {
+            this.ipcaFirst = response.data[0]['firstMetric'];
+            this.ipcaSecond = response.data[0]['secondMetric'];
+            this.ipcaThird = response.data[0]['thirdyMetric'];
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    },
+    chamarDolar: async function() {
+        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
+          .then((response) => {
+            this.dolarToday = response.data[0]['today'];
+            this.dolarMonthly = response.data[0]['monthly'];
+            this.dolarYearly = response.data[0]['yearly'];
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    },
+    chamarBtc: async function() {
+        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
+          .then((response) => {
+            this.btcToday = response.data[0]['today'];
+            this.btcMonthly = response.data[0]['monthly'];
+            this.btcYearly = response.data[0]['yearly'];
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    },
   },
   async created() {
     await this.chamarDailyDeal()
+    await this.chamarIpca()
+    await this.chamarDolar()
+    await this.chamarBtc()
   },
 });
 </script>
