@@ -429,45 +429,22 @@
           <div class="box-body">
             <ion-item color="transparent" style="color: black">
               <ion-label>Nome</ion-label>
-              <ion-input></ion-input>
+              <ion-input v-model="nomeProduto"></ion-input>
             </ion-item>
             <ion-item color="transparent" style="color: black">
-              <ion-label>Link</ion-label>
-              <ion-input></ion-input>
+              <ion-label>Link do produto</ion-label>
+              <ion-input v-model="linkProduto"></ion-input>
             </ion-item>
             <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 1</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 2</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 3</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link amazon</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link americanas</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link ponto frio</ion-label>
-              <ion-input></ion-input>
+              <ion-label>Link da imagem</ion-label>
+              <ion-input v-model="linkImagem"></ion-input>
             </ion-item>
 
             <div
               class="box-buttons"
               style="margin-top: 30px; margin-bottom: 30px"
             >
-              <ion-button size="small" color="secondary"
-                >Carregar Imagem</ion-button
-              >
-              <ion-button size="small" color="primary">OK</ion-button>
+              <ion-button size="small" color="primary" v-on:click="enviarPedido">OK</ion-button>
             </div>
           </div>
         </div>
@@ -625,6 +602,11 @@ export default defineComponent({
       btcMonthly: 0,
       btcYearly: 0,
 
+      //POST
+
+      nomeProduto: '',
+      linkProduto: '',
+      linkImagem: '',
     }
   },
   methods: {
@@ -670,12 +652,23 @@ export default defineComponent({
             console.log(error)
           })
     },
+    enviarPedido: async function() {
+        await axios.post('https://inflatech.free.beeceptor.com/my/api/path', {
+          nome: this.nomeProduto,
+          linkProduto: this.linkProduto,
+          linkImagem: this.linkImagem
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+    }
   },
   async created() {
     await this.chamarDailyDeal()
     await this.chamarIpca()
     await this.chamarDolar()
     await this.chamarBtc()
+    await this.enviarPedido()
   },
 });
 </script>
