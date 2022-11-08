@@ -474,42 +474,34 @@
 
           <!-- 2 colunas -->
           <ion-grid style="margin-top: 30px">
-            <ion-row>
-              <ion-col size="6">
-                <ion-item color="transparent">
-                  <div style="padding: 10px; text-align: center; width: 100%">
-                    <img src="/assets/americanas.png" alt="americanas">
-                  </div>
-                </ion-item>
-              </ion-col>
-              <ion-col size="6">
-                <ion-item color="transparent">
-                  <div style="padding: 10px; text-align: center; width: 100%">
-                    <!-- button -->
-                    <ion-button
-                      size="small"
-                      color="secondary"
-                      >Ver na loja</ion-button>
-                  </div>
-                </ion-item>
-              </ion-col>
-            </ion-row>
+            <ion-item color="transparent">
+              <div style="text-align: center; width: 100%">
+                <!-- button -->
+                <ion-button
+                  size="small"
+                  color="secondary"
+                  >Ver na loja</ion-button>
+              </div>
+            </ion-item>
           </ion-grid>
 
           <div class="box-head">
-            <h5>Preço</h5>
+            <h5>Real</h5>
           </div>
           <div class="box-body">
-            <img src="/assets/price.png" alt="preço" />
+            <Line :chart-data="PriceChartData" />
           </div>
           <div class="box-head">
             <h5>Bitcoin</h5>
           </div>
           <div class="box-body">
-            <img src="/assets/inflacao.png" alt="preço" />
+            <Line :chart-data="BtcChartData" />
           </div>
           <div class="box-head">
-            <h5>Inflação</h5>
+            <h5>Dólar</h5>
+          </div>
+          <div class="box-body">
+            <Line :chart-data="inflationChartData" />
           </div>
         </div>
       </div>
@@ -560,6 +552,27 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/vue";
+import { Line } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale,
+} from 'chart.js'
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale
+)
 
 export default defineComponent({
   name: "FolderPage",
@@ -579,9 +592,47 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
+    Line,
   },
   data() {
     return {
+
+      // Gráficos
+      PriceChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'Real',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      BtcChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'BTC',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      inflationChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'Dólar',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      // Tela Inicial
+      
       precosDia: [],
 
       // IPCA
