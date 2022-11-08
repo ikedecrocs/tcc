@@ -462,12 +462,12 @@
             <div style="display:grid;">
               <ion-card-header style="display:grid;">
                 <ion-card-subtitle class="subtitle"
-                  >Console PlayStation 4 Slim 500GB - Sony</ion-card-subtitle
+                  >{{this.produtoGrafico.name}}</ion-card-subtitle
                 >
-                <ion-card-title class="title">R$ 2.249,89</ion-card-title>
+                <ion-card-title class="title">R$ {{this.produtoGrafico.price}}</ion-card-title>
               </ion-card-header>
               <ion-card-content class="price">
-                Melhor preço dos ultimos 3 meses
+                Melhor preço dos ultimos {{this.produtoGrafico.bestOfferRangeDays}} dias
               </ion-card-content>
             </div>
           </ion-card>
@@ -631,6 +631,9 @@ export default defineComponent({
         ]
       },
 
+      idProdutoSelecionado: 1,
+      produtoGrafico: [],
+
       // Tela Inicial
       
       precosDia: [],
@@ -662,64 +665,80 @@ export default defineComponent({
   },
   methods: {
     chamarDailyDeal: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
-          .then((response) => {
-            this.precosDia = response.data;
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
+        .then((response) => {
+          this.precosDia = response.data;
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarIpca: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
-          .then((response) => {
-            this.ipcaFirst = response.data[0]['firstMetric'];
-            this.ipcaSecond = response.data[0]['secondMetric'];
-            this.ipcaThird = response.data[0]['thirdyMetric'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
+        .then((response) => {
+          this.ipcaFirst = response.data[0]['firstMetric'];
+          this.ipcaSecond = response.data[0]['secondMetric'];
+          this.ipcaThird = response.data[0]['thirdyMetric'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarDolar: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
-          .then((response) => {
-            this.dolarToday = response.data[0]['today'];
-            this.dolarMonthly = response.data[0]['monthly'];
-            this.dolarYearly = response.data[0]['yearly'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
+        .then((response) => {
+          this.dolarToday = response.data[0]['today'];
+          this.dolarMonthly = response.data[0]['monthly'];
+          this.dolarYearly = response.data[0]['yearly'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarBtc: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
-          .then((response) => {
-            this.btcToday = response.data[0]['today'];
-            this.btcMonthly = response.data[0]['monthly'];
-            this.btcYearly = response.data[0]['yearly'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
+        .then((response) => {
+          this.btcToday = response.data[0]['today'];
+          this.btcMonthly = response.data[0]['monthly'];
+          this.btcYearly = response.data[0]['yearly'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     enviarPedido: async function() {
-        await axios.post('https://inflatech.free.beeceptor.com/my/api/path', {
-          nome: this.nomeProduto,
-          linkProduto: this.linkProduto,
-          linkImagem: this.linkImagem
+      await axios.post('https://inflatech.free.beeceptor.com/my/api/path', {
+        nome: this.nomeProduto,
+        linkProduto: this.linkProduto,
+        linkImagem: this.linkImagem
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+    },
+    recuperarProduto: async function() {
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/getProduto/' + this.idProdutoSelecionado)
+        .then((response) => {
+          this.PriceChartData['labels'] = response.data[0]['priceHistory'][0]['months'];
+          this.PriceChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][0]['prices'];
+          this.BtcChartData['labels'] = response.data[0]['priceHistory'][1]['months'];
+          this.BtcChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][1]['prices'];
+          this.inflationChartData['labels'] = response.data[0]['priceHistory'][2]['months'];
+          this.inflationChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][2]['prices'];
+          this.produtoGrafico = response.data[0];
+          console.log(this.produtoGrafico);
         })
-        .then(function (response) {
-          console.log(response);
+        .catch((error) => {
+          console.log(error)
         })
-    }
+    },
   },
   async created() {
     await this.chamarDailyDeal()
     await this.chamarIpca()
     await this.chamarDolar()
     await this.chamarBtc()
-    await this.enviarPedido()
+    await this.recuperarProduto()
   },
 });
 </script>
