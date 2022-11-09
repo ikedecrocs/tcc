@@ -36,7 +36,8 @@
 
         <ion-card class="card"  v-for="precoDia in precosDia" :key="precoDia.price.id">
           <img
-            src="/assets/ps4.png"
+            v-if="precoDia.price.product.linkImage"
+            v-bind:src="precoDia.price.product.linkImage"
           />
 
           <div style="display:grid;">
@@ -456,7 +457,8 @@
         <div class="box">
           <ion-card class="card" style="border: 0; box-shadow: unset;">
             <img
-            src="/assets/ps4.png"
+            v-if="produtoGrafico.linkImage"
+            v-bind:src="produtoGrafico.linkImage"
           />
 
             <div style="display:grid;">
@@ -480,6 +482,7 @@
                 <ion-button
                   size="small"
                   color="secondary"
+                  v-bind:href="produtoGrafico.linkShop"
                   >Ver na loja</ion-button>
               </div>
             </ion-item>
@@ -726,7 +729,6 @@ export default defineComponent({
           this.inflationChartData['labels'] = response.data[0]['priceHistory'][2]['months'];
           this.inflationChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][2]['prices'];
           this.produtoGrafico = response.data[0];
-          console.log(this.produtoGrafico);
         })
         .catch((error) => {
           console.log(error)
