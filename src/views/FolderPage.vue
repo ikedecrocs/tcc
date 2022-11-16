@@ -24,10 +24,10 @@
           <h1>Melhores preços do dia</h1>
           <!-- ion-chip -->
           <ion-chip color="success">
-            <ion-label color="000000" :outline="true">BRL</ion-label>
+            <ion-label color="000000" :outline="true">BTC</ion-label>
           </ion-chip>
           <ion-chip color="danger">
-            <ion-label color="000000">BTC</ion-label>
+            <ion-label color="000000">IPCA</ion-label>
           </ion-chip>
           <ion-chip color="success">
             <ion-label color="000000">DLR</ion-label>
@@ -456,14 +456,6 @@
       <!-- PÁGINA GRAFICOS -->
 
       <div id="container" v-if="$route.params.id == 'graficos'">
-        <v-select
-          style="margin: 10px;"
-          v-if="options" 
-          :options="options"
-          :reduce="name => name.id"
-          label="name"
-          v-model="idProdutoSelecionado">
-        </v-select>
         <div class="box">
           <ion-card class="card" style="border: 0; box-shadow: unset;">
             <img
@@ -576,7 +568,6 @@ import {
   PointElement,
   CategoryScale,
 } from 'chart.js'
-import vSelect from "vue-select";
 
 ChartJS.register(
   Title,
@@ -607,14 +598,11 @@ export default defineComponent({
     IonRow,
     IonCol,
     Line,
-    vSelect
   },
   data() {
     return {
 
       // Gráficos
-      options: [],
-      
       PriceChartData: {
         labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
         datasets: [
@@ -682,7 +670,7 @@ export default defineComponent({
   },
   methods: {
     chamarDailyDeal: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
+      await axios.get('http://localhost:8080/api/v1/offer/today')
         .then((response) => {
           this.precosDia = response.data;
         })
@@ -691,33 +679,34 @@ export default defineComponent({
         })
     },
     chamarIpca: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
+      await axios.get('http://localhost:8080/api/v1/external/2')
         .then((response) => {
-          this.ipcaFirst = response.data[0]['firstMetric'];
-          this.ipcaSecond = response.data[0]['secondMetric'];
-          this.ipcaThird = response.data[0]['thirdyMetric'];
+        
+          this.ipcaFirst = response.data['firstMetric'];
+          this.ipcaSecond = response.data['secondMetric'];
+          this.ipcaThird = response.data['thirdyMetric'];
         })
         .catch((error) => {
           console.log(error)
         })
     },
     chamarDolar: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
+      await axios.get('http://localhost:8080/api/v1/external/3')
         .then((response) => {
-          this.dolarToday = response.data[0]['today'];
-          this.dolarMonthly = response.data[0]['monthly'];
-          this.dolarYearly = response.data[0]['yearly'];
+          this.dolarToday = response.data['firstMetric'];
+          this.dolarMonthly = response.data['secondMetric'];
+          this.dolarYearly = response.data['thirdyMetric'];
         })
         .catch((error) => {
           console.log(error)
         })
     },
     chamarBtc: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
+      await axios.get('http://localhost:8080/api/v1/external/1')
         .then((response) => {
-          this.btcToday = response.data[0]['today'];
-          this.btcMonthly = response.data[0]['monthly'];
-          this.btcYearly = response.data[0]['yearly'];
+          this.btcToday = response.data['firstMetric'];
+            this.btcMonthly = response.data['secondMetric'];
+            this.btcYearly = response.data['thirdyMetric'];
         })
         .catch((error) => {
           console.log(error)
@@ -734,7 +723,7 @@ export default defineComponent({
       })
     },
     recuperarProduto: async function() {
-      await axios.get('http://demo2883314.mockable.io/getProduto/' + this.idProdutoSelecionado)
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/getProduto/' + this.idProdutoSelecionado)
         .then((response) => {
           this.PriceChartData['labels'] = response.data[0]['priceHistory'][0]['months'];
           this.PriceChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][0]['prices'];
@@ -748,15 +737,6 @@ export default defineComponent({
           console.log(error)
         })
     },
-    listaProdutos: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/getAllProdutos/')
-        .then((response) => {
-          this.options = response.data;
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
   },
   async created() {
     await this.chamarDailyDeal()
@@ -764,20 +744,12 @@ export default defineComponent({
     await this.chamarDolar()
     await this.chamarBtc()
     await this.recuperarProduto()
-    await this.listaProdutos()
   },
-  watch: { 
-    idProdutoSelecionado: function() { // watch it
-      this.recuperarProduto()
-    }
-  }
 });
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
-@import 'vue-select/dist/vue-select.css';
-
 
 .subtitle {
   font-family: "Lato", sans-serif;
@@ -894,23 +866,4 @@ ion-col > ion-item.ion-color.ion-color-transparent.item.md.item-fill-none.item-l
   object-fit: cover;
 }
 
-</style>
-
-<style scoped>
->>> {
-  --vs-controls-color: #664cc3;
-  --vs-border-color: #664cc3;
-
-  --vs-dropdown-bg: #282c34;
-  --vs-dropdown-color: #cc99cd;
-  --vs-dropdown-option-color: #cc99cd;
-
-  --vs-selected-bg: #664cc3;
-  --vs-selected-color: #152530;
-
-  --vs-search-input-color: #152530;
-
-  --vs-dropdown-option--active-bg: #664cc3;
-  --vs-dropdown-option--active-color: #152530;
-}
 </style>
