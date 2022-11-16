@@ -713,7 +713,7 @@ export default defineComponent({
         })
     },
     enviarPedido: async function() {
-      await axios.post('https://inflatech.free.beeceptor.com/my/api/path', {
+      await axios.post('http://localhost:8080/api/v1/productRequest', {
         nome: this.nomeProduto,
         linkProduto: this.linkProduto,
         linkImagem: this.linkImagem
@@ -726,15 +726,15 @@ export default defineComponent({
       })
     },
     recuperarProduto: async function() {
-      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/getProduto/' + this.idProdutoSelecionado)
+      await axios.get('http://localhost:8080/api/v1/offer/' + this.idProdutoSelecionado)
         .then((response) => {
-          this.PriceChartData['labels'] = response.data[0]['priceHistory'][0]['months'];
-          this.PriceChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][0]['prices'];
-          this.BtcChartData['labels'] = response.data[0]['priceHistory'][1]['months'];
-          this.BtcChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][1]['prices'];
-          this.inflationChartData['labels'] = response.data[0]['priceHistory'][2]['months'];
-          this.inflationChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][2]['prices'];
-          this.produtoGrafico = response.data[0];
+          this.PriceChartData['labels'] = response.data['priceHistory'][0]['months'];
+          this.PriceChartData['datasets'][0]['data'] = response.data['priceHistory'][0]['prices'];
+          this.BtcChartData['labels'] = response.data['priceHistory'][1]['months'];
+          this.BtcChartData['datasets'][0]['data'] = response.data['priceHistory'][1]['prices'];
+          this.inflationChartData['labels'] = response.data['priceHistory'][2]['months'];
+          this.inflationChartData['datasets'][0]['data'] = response.data['priceHistory'][2]['prices'];
+          this.produtoGrafico = response.data;
         })
         .catch((error) => {
           console.log(error)
