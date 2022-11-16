@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Play 4",
+        "price": "2500",
+        "bestOfferRangeDays": "1",
+        "linkImage": "",
+        "linkShop": "",
+        "priceHistory": [
+            {
+                "id": 1,
+                "months": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+                "prices": [10, 20, 12, 11, 13, 14, 16]
+            },
+            {
+                "id": 2,
+                "months": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+                "prices": [10, 20, 12, 11, 13, 14, 16]
+            },
+            {
+                "id": 3,
+                "months": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho"],
+                "prices": [10, 20, 12, 11, 13, 14, 16]
+            }
+        ]
+
+    }
+]

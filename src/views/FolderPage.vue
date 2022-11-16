@@ -36,7 +36,8 @@
 
         <ion-card class="card"  v-for="precoDia in precosDia" :key="precoDia.price.id">
           <img
-            src="/assets/ps4.png"
+            v-if="precoDia.price.product.linkImage"
+            v-bind:src="precoDia.price.product.linkImage"
           />
 
           <div style="display:grid;">
@@ -431,45 +432,22 @@
           <div class="box-body">
             <ion-item color="transparent" style="color: black">
               <ion-label>Nome</ion-label>
-              <ion-input></ion-input>
+              <ion-input v-model="nomeProduto"></ion-input>
             </ion-item>
             <ion-item color="transparent" style="color: black">
-              <ion-label>Link</ion-label>
-              <ion-input></ion-input>
+              <ion-label>Link do produto</ion-label>
+              <ion-input v-model="linkProduto"></ion-input>
             </ion-item>
             <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 1</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 2</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Codinome 3</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link amazon</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link americanas</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item color="transparent" style="color: black">
-              <ion-label>Link ponto frio</ion-label>
-              <ion-input></ion-input>
+              <ion-label>Link da imagem</ion-label>
+              <ion-input v-model="linkImagem"></ion-input>
             </ion-item>
 
             <div
               class="box-buttons"
               style="margin-top: 30px; margin-bottom: 30px"
             >
-              <ion-button size="small" color="secondary"
-                >Carregar Imagem</ion-button
-              >
-              <ion-button size="small" color="primary">OK</ion-button>
+              <ion-button size="small" color="primary" v-on:click="enviarPedido">OK</ion-button>
             </div>
           </div>
         </div>
@@ -481,60 +459,54 @@
         <div class="box">
           <ion-card class="card" style="border: 0; box-shadow: unset;">
             <img
-            src="/assets/ps4.png"
+            v-if="produtoGrafico.linkImage"
+            v-bind:src="produtoGrafico.linkImage"
           />
 
             <div style="display:grid;">
               <ion-card-header style="display:grid;">
                 <ion-card-subtitle class="subtitle"
-                  >Console PlayStation 4 Slim 500GB - Sony</ion-card-subtitle
+                  >{{this.produtoGrafico.name}}</ion-card-subtitle
                 >
-                <ion-card-title class="title">R$ 2.249,89</ion-card-title>
+                <ion-card-title class="title">R$ {{this.produtoGrafico.price}}</ion-card-title>
               </ion-card-header>
               <ion-card-content class="price">
-                Melhor preço dos ultimos 3 meses
+                Melhor preço dos ultimos {{this.produtoGrafico.bestOfferRangeDays}} dias
               </ion-card-content>
             </div>
           </ion-card>
 
           <!-- 2 colunas -->
           <ion-grid style="margin-top: 30px">
-            <ion-row>
-              <ion-col size="6">
-                <ion-item color="transparent">
-                  <div style="padding: 10px; text-align: center; width: 100%">
-                    <img src="/assets/americanas.png" alt="americanas">
-                  </div>
-                </ion-item>
-              </ion-col>
-              <ion-col size="6">
-                <ion-item color="transparent">
-                  <div style="padding: 10px; text-align: center; width: 100%">
-                    <!-- button -->
-                    <ion-button
-                      size="small"
-                      color="secondary"
-                      >Ver na loja</ion-button>
-                  </div>
-                </ion-item>
-              </ion-col>
-            </ion-row>
+            <ion-item color="transparent">
+              <div style="text-align: center; width: 100%">
+                <!-- button -->
+                <ion-button
+                  size="small"
+                  color="secondary"
+                  v-bind:href="produtoGrafico.linkShop"
+                  >Ver na loja</ion-button>
+              </div>
+            </ion-item>
           </ion-grid>
 
           <div class="box-head">
-            <h5>Preço</h5>
+            <h5>Real</h5>
           </div>
           <div class="box-body">
-            <img src="/assets/price.png" alt="preço" />
+            <Line :chart-data="PriceChartData" />
           </div>
           <div class="box-head">
             <h5>Bitcoin</h5>
           </div>
           <div class="box-body">
-            <img src="/assets/inflacao.png" alt="preço" />
+            <Line :chart-data="BtcChartData" />
           </div>
           <div class="box-head">
-            <h5>Inflação</h5>
+            <h5>Dólar</h5>
+          </div>
+          <div class="box-body">
+            <Line :chart-data="inflationChartData" />
           </div>
         </div>
       </div>
@@ -585,6 +557,27 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/vue";
+import { Line } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale,
+} from 'chart.js'
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  PointElement,
+  CategoryScale
+)
 
 export default defineComponent({
   name: "FolderPage",
@@ -604,9 +597,50 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
+    Line,
   },
   data() {
     return {
+
+      // Gráficos
+      PriceChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'Real',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      BtcChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'BTC',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      inflationChartData: {
+        labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
+        datasets: [
+          {
+            label: 'Dólar',
+            backgroundColor: '#556d8b',
+            data: [10, 20, 12, 11, 13, 14, 16]
+          }
+        ]
+      },
+
+      idProdutoSelecionado: 1,
+      produtoGrafico: [],
+
+      // Tela Inicial
+      
       precosDia: [],
 
       // IPCA
@@ -627,51 +661,80 @@ export default defineComponent({
       btcMonthly: 0,
       btcYearly: 0,
 
+      //POST
+
+      nomeProduto: '',
+      linkProduto: '',
+      linkImagem: '',
     }
   },
   methods: {
     chamarDailyDeal: async function() {
-        await axios.get('http://localhost:8080/api/v1/offer/today')
-          .then((response) => {
-            this.precosDia = response.data;
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('http://localhost:8080/api/v1/offer/today')
+        .then((response) => {
+          this.precosDia = response.data;
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarIpca: async function() {
-        await axios.get('http://localhost:8080/api/v1/external/2')
-          .then((response) => {
-            this.ipcaFirst = response.data['firstMetric'];
-            this.ipcaSecond = response.data['secondMetric'];
-            this.ipcaThird = response.data['thirdyMetric'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
+        .then((response) => {
+          this.ipcaFirst = response.data[0]['firstMetric'];
+          this.ipcaSecond = response.data[0]['secondMetric'];
+          this.ipcaThird = response.data[0]['thirdyMetric'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarDolar: async function() {
-        await axios.get('http://localhost:8080/api/v1/external/3')
-          .then((response) => {
-        
-            this.dolarToday = response.data['firstMetric'];
-            this.dolarMonthly = response.data['secondMetric'];
-            this.dolarYearly = response.data['thirdyMetric'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
+        .then((response) => {
+          this.dolarToday = response.data[0]['today'];
+          this.dolarMonthly = response.data[0]['monthly'];
+          this.dolarYearly = response.data[0]['yearly'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     chamarBtc: async function() {
-        await axios.get('http://localhost:8080/api/v1/external/1')
-          .then((response) => {
-            this.btcToday = response.data['firstMetric'];
-            this.btcMonthly = response.data['secondMetric'];
-            this.btcYearly = response.data['thirdyMetric'];
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
+        .then((response) => {
+          this.btcToday = response.data[0]['today'];
+          this.btcMonthly = response.data[0]['monthly'];
+          this.btcYearly = response.data[0]['yearly'];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    enviarPedido: async function() {
+      await axios.post('https://inflatech.free.beeceptor.com/my/api/path', {
+        nome: this.nomeProduto,
+        linkProduto: this.linkProduto,
+        linkImagem: this.linkImagem
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+    },
+    recuperarProduto: async function() {
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/getProduto/' + this.idProdutoSelecionado)
+        .then((response) => {
+          this.PriceChartData['labels'] = response.data[0]['priceHistory'][0]['months'];
+          this.PriceChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][0]['prices'];
+          this.BtcChartData['labels'] = response.data[0]['priceHistory'][1]['months'];
+          this.BtcChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][1]['prices'];
+          this.inflationChartData['labels'] = response.data[0]['priceHistory'][2]['months'];
+          this.inflationChartData['datasets'][0]['data'] = response.data[0]['priceHistory'][2]['prices'];
+          this.produtoGrafico = response.data[0];
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
   },
   async created() {
@@ -679,6 +742,7 @@ export default defineComponent({
     await this.chamarIpca()
     await this.chamarDolar()
     await this.chamarBtc()
+    await this.recuperarProduto()
   },
 });
 </script>
