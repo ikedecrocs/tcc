@@ -130,7 +130,7 @@ export default defineComponent({
   },
   methods: {
     chamarExternalFactor: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/DailyFactor')
+      await axios.get('http://localhost:8080/api/v1/external')
           .then((response) => {
             this.externalFactor = response.data;
             this.btc = this.externalFactor[0]['externalPeriod'][this.intervalo]['dailyDTO']['value'];

@@ -47,7 +47,9 @@
               <ion-card-title class="title">R$ {{precoDia.price.value}}</ion-card-title>
             </ion-card-header>
             <ion-card-content class="price">
-              Melhor preço dos ultimos {{precoDia.bestOfferRangeDays}} dias
+              <p v-if="precoDia.bestOfferRangeDays > 1"> Melhor preço dos ultimos {{precoDia.bestOfferRangeDays}} dias.</p>
+              <p v-if="precoDia.bestOfferRangeDays == 1"> Melhor preço no último {{precoDia.bestOfferRangeDays}} dia.</p>
+              <p v-if="precoDia.bestOfferRangeDays == -1"> MELHOR PREÇO já registrado.</p>
             </ion-card-content>
           </div>
         </ion-card>
@@ -629,7 +631,7 @@ export default defineComponent({
   },
   methods: {
     chamarDailyDeal: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
+        await axios.get('http://localhost:8080/api/v1/offer/today')
           .then((response) => {
             this.precosDia = response.data;
           })
@@ -638,33 +640,34 @@ export default defineComponent({
           })
     },
     chamarIpca: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/IPCA')
+        await axios.get('http://localhost:8080/api/v1/external/2')
           .then((response) => {
-            this.ipcaFirst = response.data[0]['firstMetric'];
-            this.ipcaSecond = response.data[0]['secondMetric'];
-            this.ipcaThird = response.data[0]['thirdyMetric'];
+            this.ipcaFirst = response.data['firstMetric'];
+            this.ipcaSecond = response.data['secondMetric'];
+            this.ipcaThird = response.data['thirdyMetric'];
           })
           .catch((error) => {
             console.log(error)
           })
     },
     chamarDolar: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Dolar')
+        await axios.get('http://localhost:8080/api/v1/external/3')
           .then((response) => {
-            this.dolarToday = response.data[0]['today'];
-            this.dolarMonthly = response.data[0]['monthly'];
-            this.dolarYearly = response.data[0]['yearly'];
+        
+            this.dolarToday = response.data['firstMetric'];
+            this.dolarMonthly = response.data['secondMetric'];
+            this.dolarYearly = response.data['thirdyMetric'];
           })
           .catch((error) => {
             console.log(error)
           })
     },
     chamarBtc: async function() {
-        await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/Bitcoin')
+        await axios.get('http://localhost:8080/api/v1/external/1')
           .then((response) => {
-            this.btcToday = response.data[0]['today'];
-            this.btcMonthly = response.data[0]['monthly'];
-            this.btcYearly = response.data[0]['yearly'];
+            this.btcToday = response.data['firstMetric'];
+            this.btcMonthly = response.data['secondMetric'];
+            this.btcYearly = response.data['thirdyMetric'];
           })
           .catch((error) => {
             console.log(error)
