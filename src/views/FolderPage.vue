@@ -663,9 +663,9 @@ export default defineComponent({
 
       //POST
 
-      nomeProduto: '',
-      linkProduto: '',
-      linkImagem: '',
+      nomeProduto: "",
+      linkProduto: "",
+      linkImagem: "",
     }
   },
   methods: {
@@ -718,7 +718,10 @@ export default defineComponent({
         linkProduto: this.linkProduto,
         linkImagem: this.linkImagem
       })
-      .then(function (response) {
+      .then((response) => {
+        this.nomeProduto = "";
+        this.linkProduto = "";
+        this.linkImagem = "";
         console.log(response);
       })
     },
