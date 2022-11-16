@@ -670,7 +670,7 @@ export default defineComponent({
   },
   methods: {
     chamarDailyDeal: async function() {
-      await axios.get('http://localhost:8080/api/v1/offer/today')
+      await axios.get('https://635c1d30fc2595be2640f3f3.mockapi.io/PrecoDia')
         .then((response) => {
           this.precosDia = response.data;
         })
