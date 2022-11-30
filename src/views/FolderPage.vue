@@ -500,7 +500,7 @@
           </ion-grid>
 
           <div class="box-head">
-            <h5>Real</h5>
+            <h5>Valor do Produto</h5>
           </div>
           <div class="box-body">
             <Line :chart-data="PriceChartData" />
@@ -619,7 +619,7 @@ export default defineComponent({
         labels: [ 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'],
         datasets: [
           {
-            label: 'Real',
+            label: 'Valor do produto',
             backgroundColor: '#556d8b',
             data: [10, 20, 12, 11, 13, 14, 16]
           }
